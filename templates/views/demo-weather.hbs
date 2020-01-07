@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>About</title>
+    <title>Weather</title>
     <link rel="icon" href="/img/weather.png">
     <link rel="stylesheet" href="/css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100&display=swap" rel="stylesheet">
@@ -12,14 +12,21 @@
 <body>
     <div class="main-content">
         {{>header}}
-        <p>
-        	Security Professional looking to create interactive, user-friendly web applications
-        	
-        </p>
-        <img class="portrait" src="/img/girl.jpg">
+
+        <p>Use this tab to get your weather! Type in a location below</p>
+
+        <form>
+            <input placeholder="Location">
+            <button>Search</button>
+        </form>
+
+        <p id="message-1"></p>
+        <p id="message-2"></p>
     </div>
-    
+
     {{>footer}}
+
+    <script src="/js/app.js"></script>
 </body>
 
 </html>

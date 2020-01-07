@@ -1,106 +1,108 @@
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
-
-const request = require('request')
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
-const address = process.argv[2]
-
 
 const app = express()
-
 const port = process.env.PORT || 3000
 
-
-// Paths for Express config
+// Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, '../templates/views')
 const partialsPath = path.join(__dirname, '../templates/partials')
 
-// Set up Handlebars
+// Setup handlebars engine and views location
 app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
 
-
-// Set up static directory to serve
+// Setup static directory to serve
 app.use(express.static(publicDirectoryPath))
 
-app.get('', (req, res) => { 
-    res.render('index', {
-        title: 'home',
-        name: 'Not me'
-    }) 
+app.get('', (req, res) => {
+    res.render('home', {
+        title: 'Home',
+        name: 'Lera Leonteva'
+    })
+})
+
+app.get('/demo-weather', (req, res) => {
+    res.render('demo-weather', {
+        title: 'Weather',
+        name: 'Lera Leonteva'
+    })
 })
 
 app.get('/about', (req, res) => {
     res.render('about', {
-        title: 'About bugcat',
-        name: 'not Lera'
+        title: 'About Me',
+        name: 'Lera Leonteva'
     })
 })
 
 app.get('/help', (req, res) => {
     res.render('help', {
-        helpText: 'This is some helpful text.',
-        name: 'not bugcat'
+        helpText: 'If you want to know more, email lera2mail@gmail.com or find me on social media',
+        title: 'Help',
+        name: 'Lera Leonteva'
     })
 })
 
 app.get('/weather', (req, res) => {
-	if (!req.query.address) {
-		return res.send({
-			error: 'Provide an address'
-		})
-	}
-    geocode(req.query.address, (error, {latitude, longitude, location } = {} ) => {
+    if (!req.query.address) {
+        return res.send({
+            error: 'You must provide an address!'
+        })
+    }
+
+    geocode(req.query.address, (error, { latitude, longitude, location } = {}) => {
         if (error) {
-            return res.send({error})
+            return res.send({ error })
         }
+
         forecast(latitude, longitude, (error, forecastData) => {
             if (error) {
-                return res.send({error})
+                return res.send({ error })
             }
-            res.send({ 
-            	address: req.query.address,
-            	location,
-            	forecast: forecastData
+
+            res.send({
+                forecast: forecastData,
+                location,
+                address: req.query.address
             })
         })
     })
 })
 
 app.get('/products', (req, res) => {
-	if (!req.query.search) {
-		return res.send({
-			error: 'Provide a search term NOW'
-		})
-	} 
+    if (!req.query.search) {
+        return res.send({
+            error: 'You must provide a search term'
+        })
+    }
 
-	console.log(req.query.search) 
-	res.send({ 
-		products: []
-	})
+    console.log(req.query.search)
+    res.send({
+        products: []
+    })
 })
 
 app.get('/help/*', (req, res) => {
-	res.render('error', {
-		title: 'error',
-		name: 'not me hehe',
-		errorMessage: 'your plea for help isnt valid'
-	})
+    res.render('404', {
+        title: '404',
+        name: 'Lera Leonteva',
+        errorMessage: 'Help article not found.'
+    })
 })
 
-
-app.get('*' , (req,res) => {
-	res.render('error', {
-		title:'oops',
-		name: 'probably wasnt good anyway',
-		errorMessage: 'nonsense'
-	})
+app.get('*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        name: 'Lera Leonteva',
+        errorMessage: 'Page not found.'
+    })
 })
-
 
 app.listen(port, () => {
     console.log('Server is up on port ' + port)

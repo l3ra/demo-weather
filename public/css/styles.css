@@ -1,55 +1,125 @@
+* {
+    box-sizing: border-box;
+  }
+
 body {
-	color: #333333;
-	font-family: arial;
-	max-width: 650px; 
-	margin: 0 auto;
-	padding: 0 16px;
-
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-} 
-
-.main-content {
-	flex-grow: 1; 
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(4,4,4,1) 50%, rgba(66,66,66,1) 100%);
+    
 }
 
+.landing {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    position: relative;
+}
+  
+#myVideo {
+    width: 100%;
+    height: 80%;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+ }
+  
+.videoText {
+    position: absolute;
+    top:10vw;
+    text-align: center;
+    left: 40vw;
+    color: #f1f1f1;
+    width: 15%;
+ }
+
+
+.main-content {
+    color: #333333;
+    font-family: arial;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0 16px;
+
+    background-color: #d3d3d3;
+    background-size: cover;
+    background-position: top;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    flex-grow: 1;
+    align-self: auto;
+}
+
+
+
+#logo-1 {
+    font-family: 'Josefin Slab', serif;
+    color: #333333;
+    font-size: 40px;
+    margin: 5px auto;
+    padding: 0px;
+    display: inline-block;
+
+}
+
+
 footer {
-	color: #888888;
-	border-top: 1px solid #eeeeee;
-	padding: 16px 0;
-	margin-top: 16px;
+    color: #888888;
+    border-top: 1px solid #eeeeee;
+    margin-top: 16px;
+    padding: 16px 0;
+    margin: 0;
 }
 
 header {
-	margin-top: 16px;
-	margin-bottom: 48px;
+    margin-top: 16px;
+    margin-bottom: 48px;
+    margin: 0;
 }
 
 h1 {
-	font-size: 64px;
-	margin-bottom: 16px:;
+    font-size: 64px;
+    margin-bottom: 16px;
+    margin: 0;
+}
+
+h2 {
+    font-size: 3vw;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    border: 1px solid white;
+    align-content: center;
+    
 }
 
 header a {
-	color: #888888;
-	margin-right: 16px;
-	text-decoration: none;
+    color: #888888;
+    margin-right: 16px;
+    text-decoration: none;
+    margin: 0;
 }
 
 .portrait {
-	width: 250px;
+    width: 250px;
 }
 
 input {
-	border: 1px solid #cccccc;
-	padding: 8px;
+    border: 1px solid #cccccc;
+    padding: 8px;
 }
 
 button {
-	cursor: pointer;
-	border: 1px solid #888888;
-	background: #888888;
-	color: white;
-	padding: 8px
+    cursor: pointer;
+    border: 1px solid #888888;
+    background: #888888;
+    color: white;
+    padding: 8px;
 }
